@@ -1,37 +1,46 @@
 ---
-import social from "@/collections/social.json";
-const { displaySocialIds } = Astro.props;
-// 配置要显示的社交媒体 ID（留空则显示所有）
-//const displaySocialIds: number[] = [1, 2, 3]; // 只显示 ID 为 1, 2, 3 的社交媒体
-// const displaySocialIds: number[] = []; // 显示所有（当数组为空时）
-
-const filteredSocial = social.filter(item => {
-  if (item.isShow === false) return false;
-  if (displaySocialIds.length > 0) {
-    return displaySocialIds.includes(item.id);
+const socialData = [
+  {
+    name: "Github",
+    url: "https://github.com/labibluthfi",
+    username: "labibluthfi",
+    // INI DIA! Kita panggil file foto lokal kamu
+    image: "public/assets/social/social-github.jpg", 
+  },
+  {
+    name: "Instagram",
+    url: "https://instagram.com/labibluthfi",
+    username: "@m_labibl_11",
+    image: "public/assets/social/logo-ig.jpg",
+  },
+  {
+    name: "WhatsApp",
+    url: "https://wa.me/6285891096731",
+    username: "Chat Me",
+    image: "public/assets/social/logo-whatsapp.jpg",
   }
-  return true;
-});
+];
 ---
 
 <div class="social-cards-wrapper">
   <div class="social-list">
-    {filteredSocial.map((item, index) => (
+    {socialData.map((item, index) => (
       <a
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
         class="social-item"
-        style={`--index: ${index}; --total: ${filteredSocial.length};`}
+        style={`--index: ${index}; --total: ${socialData.length};`}
       >
-        <img
-          src={item.image}
-          alt={item.name}
-          class="social-image"
-        />
+        {item.image ? (
+          <img src={item.image} alt={item.name} class="social-image" />
+        ) : (
+          <div class="social-bg" style={`background: ${item.color};`}></div>
+        )}
+        
         <div class="social-info">
           <div class="social-username">
-            @{item.username}
+            {item.username}
           </div>
         </div>
       </a>
@@ -43,6 +52,7 @@ const filteredSocial = social.filter(item => {
   .social-cards-wrapper {
     position: relative;
     width: 100%;
+    min-height: 80px; 
   }
 
   .social-list {
@@ -50,48 +60,81 @@ const filteredSocial = social.filter(item => {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* 桌面端：容器高度固定，用于堆叠效果 */
     height: 70px;
   }
 
-  /* 移动端：自适应高度 */
   @media (max-width: 768px) {
     .social-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem; /* gap-2 = 0.5rem */
+      gap: 0.5rem;
       height: auto;
-      justify-content: center;
+      justify-content: flex-start;
     }
   }
 
   .social-item {
     position: relative;
     overflow: hidden;
-    border-radius: 0.75rem; /* rounded-xl */
+    border-radius: 0.75rem;
     cursor: pointer;
-    /* 分离 transform 和 z-index 的过渡 */
-
     transition: transform 0.6s cubic-bezier(0.34, 1.2, 0.64, 1),
                 z-index 0s linear 0.6s,
                 box-shadow 0.3s ease;
     transition-delay: calc(var(--index) * 0.03s);
     width: 72px;
     height: 72px;
+    background: #1a1a1a;
   }
-  /* 桌面端：堆叠效果 */
+
+  /* STYLE UNTUK FOTO (GITHUB) */
+  .social-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .social-item:hover .social-image {
+    transform: scale(1.15);
+  }
+
+  /* STYLE UNTUK GRADASI (IG & WA) */
+  .social-bg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .social-item:hover .social-bg {
+    transform: scale(1.15);
+  }
+
+  /* EFEK TUMPUK (DESKTOP) */
   @media (min-width: 769px) {
     .social-item {
       position: absolute;
       left: 0;
-      /* 初始状态：重叠 + 向右轻微旋转 */
       transform: translateX(calc(var(--index) * 3px)) rotate(calc(var(--index) * 5deg));
-      /* ID 越小的 z-index 越大（在最上面）*/
       z-index: calc(var(--total) - var(--index));
+    }
+
+    .social-list:hover .social-item {
+      transform: translateX(calc(var(--index) * 85px)) rotate(0deg);
+      z-index: calc(var(--index) + 100);
+      transition: transform 0.6s cubic-bezier(0.34, 1.2, 0.64, 1),
+                  z-index 0s linear 0s,
+                  box-shadow 0.3s ease;
+      transition-delay: calc(var(--index) * 0.03s);
+    }
+
+    .social-list:hover .social-item:hover {
+      transform: translateX(calc(var(--index) * 80px)) translateY(-10px) rotate(-6deg) scale(1.05);
+      z-index: 9999;
+      transition: transform 0.35s cubic-bezier(0.34, 1.5, 0.64, 1),
+                  z-index 0s linear 0s,
+                  box-shadow 0.3s ease;
     }
   }
 
-  /* 移动端：正常排列 */
   @media (max-width: 768px) {
     .social-item {
       position: relative;
@@ -100,69 +143,17 @@ const filteredSocial = social.filter(item => {
     }
   }
 
-  /* 桌面端悬停效果：向右展开 */
-  @media (min-width: 769px) {
-    .social-list:hover .social-item {
-      /* 向右展开：ID 1 保持原地，后面的依次向右 */
-      transform: translateX(calc(var(--index) * 85px)) rotate(0deg);
-      /* 展开时反转 z-index：右边的卡片在上面，避免回弹时的重叠闪烁 */
-      z-index: calc(var(--index) + 100);
-      /* 展开时立即切换 z-index，回收时延迟切换 */
-      transition: transform 0.6s cubic-bezier(0.34, 1.2, 0.64, 1),
-                  z-index 0s linear 0s,
-                  box-shadow 0.3s ease;
-      transition-delay: calc(var(--index) * 0.03s);
-    }
-
-    .social-list:hover .social-item:hover {
-      /* 当前悬停的卡片：向上弹起 + 轻微旋转 */
-      transform: translateX(calc(var(--index) * 80px)) translateY(-10px) rotate(-6deg) scale(1.05);
-      z-index: 9999;
-      /* 悬停时缩短过渡时间，反应更灵敏 */
-      transition: transform 0.35s cubic-bezier(0.34, 1.5, 0.64, 1),
-                  z-index 0s linear 0s,
-                  box-shadow 0.3s ease;
-    }
-  }
-
-  /* 图片样式 */
-  .social-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0.75rem; /* rounded-xl */
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .social-item:hover .social-image {
-    transform: scale(1.15); /* 放大更明显 */
-  }
-
-  /* 用户名信息 */
   .social-info {
     position: absolute;
     bottom: 6px;
     left: 6px;
     z-index: 10;
-    transition: opacity 0.3s;
   }
 
   .social-username {
     font-size: 8px;
-    color: rgba(255, 255, 255, 0.85);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  }
-
-  /* 悬停时添加阴影 - 增强效果 */
-  .social-item:hover {
-    box-shadow: 0 15px 32px rgba(0, 0, 0, 0.15),
-                0 5px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  /* 移动端优化 */
-  @media (max-width: 768px) {
-    .social-item:active {
-      transform: scale(0.95);
-    }
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   }
 </style>

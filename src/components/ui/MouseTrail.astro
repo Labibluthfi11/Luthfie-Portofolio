@@ -1,0 +1,72 @@
+<script>
+  // Konfigurasi warna (bisa diganti warna brand lu)
+  const colors = ["#4F46E5", "#FF0000", "#25D366", "#FFFF00"];
+  
+  // Fungsi bikin partikel
+  function createParticle(x, y) {
+    const particle = document.createElement("div");
+    particle.classList.add("cursor-particle");
+    document.body.appendChild(particle);
+
+    // Random ukuran & posisi dikit biar natural
+    const size = Math.random() * 8 + 5; // Ukuran 5px - 13px
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // Posisi tepat di mouse
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    
+    // Warna random
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.background = color;
+
+    // Arah gerak random
+    const destinationX = x + (Math.random() - 0.5) * 50;
+    const destinationY = y + (Math.random() - 0.5) * 50;
+
+    // Animasi pake Web Animations API (lebih ringan dari CSS biasa)
+    const animation = particle.animate([
+      {
+        transform: `translate(-50%, -50%) scale(1)`,
+        opacity: 1
+      },
+      {
+        transform: `translate(${destinationX - x}px, ${destinationY - y}px) scale(0)`,
+        opacity: 0
+      }
+    ], {
+      duration: 800, // Lama partikel muncul (ms)
+      easing: 'cubic-bezier(0, .9, .57, 1)',
+      delay: Math.random() * 10
+    });
+
+    // Hapus elemen setelah animasi kelar biar gak bikin lag
+    animation.onfinish = () => {
+      particle.remove();
+    };
+  }
+
+  // Listener Mouse Move
+  // Pake throttle dikit biar ga kebanyakan partikel
+  let timeout;
+  document.addEventListener('mousemove', (e) => {
+    if (!timeout) {
+      timeout = setTimeout(() => {
+        createParticle(e.clientX, e.clientY);
+        timeout = null;
+      }, 20); // Muncul tiap 20ms
+    }
+  });
+</script>
+
+<style is:global>
+  /* Style dasar partikel */
+  .cursor-particle {
+    position: fixed;
+    border-radius: 50%; /* Jadi bunder */
+    pointer-events: none; /* Biar ga ngehalangin klik */
+    z-index: 9999; /* Paling depan */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Efek glowing dikit */
+  }
+</style>

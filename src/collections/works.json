@@ -1,58 +1,60 @@
 [
-	{
-		"name": "RicoOG",
-		"description": "OG Inspiration Library",
-		"tags": ["Open Graph", "Design", "Library"],
-		"image": "/assets/works/ricoog.jpg",
-		"video": "/assets/works/ricoog.mp4",
-		"url": "https://ricoog.com/",
-		"isShow": true
-	},
-	{
-		"name": "GradientsHub",
-		"description": "Gradient Resources & Tools",
-		"tags": ["Gradient","Resources","Tools"],
-		"image": "/assets/works/gradientshub.jpg",
-		"video": "/assets/works/gradientshub.mp4",
-		"url": "https://gradientshub.com"
-	},
-	{
-		"name": "Luon Models",
-		"description": "Agency Company Website",
-		"tags": ["Agency","Website"],
-		"image": "/assets/works/luonmodels.jpg",
-		"video": "/assets/works/luonmodels.mp4",
-		"url": "/work/luonmodels"
-	},
-	{
-		"name": "Ricoui",
-		"description": "Designer Portfolio",
-		"tags": ["Designer","Portfolio","Open Source"],
-		"image": "/assets/works/ricoui.jpg",
-		"video": "/assets/works/ricoui.mp4",
-		"url": "/work/ricoblog2024"
+  {
+    "name": "Dashboard Admin Absensi Karyawan",
+    "description": "Sistem manajemen kehadiran karyawan terintegrasi (Mobile & Web) untuk monitoring real-time dan reporting otomatis.",
+    "tags": ["Laravel", "Flutter", "Mysql"],
+    "image": "/assets/works/absensi-karyawan.png",
+    "isShow": true
+  },
 
-	},
-	{
-		"name": "3D Valentines Assets",
-		"description": "Blender Design Resources & Assets",
-		"tags": ["3D","Resources","Assets"],
-		"image": "/assets/works/3d-valentines.jpg",
-		"video": "/assets/works/3d-valentines.mp4",
-		"url": "/work/3dvalentine"
-	},
-	{
-		"name": "UIUXDECK",
-		"description": "Design Resources & Tools",
-		"tags": ["Design","Resources","Tools"],
-		"image": "/assets/works/uiuxdeck.jpg",
-		"url": "http://uiuxdeck.com/"
-	},
-	{
-		"name": "Inspoweb",
-		"description": "Web Inspiration Library",
-		"tags": ["Inspiration","Web Collection"],
-		"image": "/assets/works/inspoweb.jpg",
-		"url": "https://inspoweb.com/"
-	}
+  {
+    "name": "Company Profile",
+    "description": "Website profil perusahaan modern dengan performa tinggi (SEO Friendly) dan manajemen konten dinamis.",
+    "tags": ["Next Js", "Figma", "Laravel", "Mysql"],
+    "image": "/assets/works/Company.png",
+    "url": "https://pt.anselmudaberkarya.my.id/"
+  },
+
+  {
+    "name": "E - Document",
+    "description": "Platform digitalisasi arsip untuk pengelolaan, pencarian, dan pengamanan dokumen perusahaan secara efisien.",
+    "tags": ["Laravel", "Mysql"],
+    "image": "/assets/works/dokumen.png"
+  },
+
+  {
+    "name": "alquran-ku Mobile",
+    "description":"Aplikasi Al-Quran Yang Ringan Dan User Friendly, Terintegrasi Dengan API Santri Coding Publik Untuk Memudahkan Ibadah Harian Pengguna Di Mana Saja ",
+    "tags": ["Flutter", "Api"],
+    "image": "/assets/works/alquran.png"
+  },
+
+  {
+    "name": "pengaduan Masyarakat",
+    "description":"Portal Aspirasi Publik Berbasis Web Yang Responsif Dan Interaktif (SPA-like), Dibangun Menggunakan Laravel Livewire Untuk Pengalaman Pengguna Yang Mulus.",
+    "tags": ["Laravel Livewire", "Mysql"],
+    "image": "/assets/works/pengaduan.png"
+  },
+
+{
+  "name": "Pizza Delivery App",
+  "description":"Platform Pemesanan Makanan Spesialis F&B Deangan Fitur Kustomisasi Menu Dan Integrasi Pembayaran Otomatis (Payment Gate Away).",
+  "tags": ["Laravel", "Mysql", "Payment Gateway"],
+  "image": "/assets/works/pizza.png"
+},
+
+{
+  "name": "Satwa Kita",
+  "description": "Platform Digital untuk Komunitas Pecinta Hewan, Memfasilitasi Informasi Pemeliharaan, Adopsi, Manajement Data Satwa",
+  "tags": ["Laravel", "Mysql"],
+  "image": "/assets/works/satwa.png"
+},
+
+{
+  "name": "Toko Kita",
+  "description": "Marketplace Multi-Kategrori Web (Laravel) Yang Terintegrasi Penuh Deangan Mobile app (Flutter) Untuk Pembelian Belanja Seperti Shopee ",
+  "tags": ["Laravel", "Flutter", "Mysql"],
+  "image": "/assets/works/toko.png"
+}
+
 ]

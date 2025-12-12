@@ -4,18 +4,21 @@ import TopBg from "@/components/ui/TopBg.astro";
 import Footer from "@/components/sections/Footer.astro";
 import Header from "@/components/sections/Header.astro";
 import TrackGa from "@/components/widgets/TrackGa.astro";
+
+// 1. IMPOR DI SINI
+import MouseTrail from "@/components/ui/MouseTrail.astro";
+
 interface Props {
-	title?: string | undefined;
-	description?: string | undefined;
-	keywords?: string | undefined;
+  title?: string | undefined;
+  description?: string | undefined;
+  keywords?: string | undefined;
 }
 
 const {
-	title,
-	description,
-	keywords
+  title,
+  description,
+  keywords
 } = Astro.props;
-
 
 import "../styles/global.css";
 import "aos/dist/aos.css";
@@ -33,7 +36,6 @@ import '../styles/article-enhancements.css';
       keywords = {keywords}
     />
     <TrackGa />
-    <!-- Used to add dark mode right away, adding here prevents any flicker -->
     <script is:inline>
       if (typeof Storage !== 'undefined') {
         if (
@@ -45,13 +47,16 @@ import '../styles/article-enhancements.css';
       }
     </script>
 
-    <link rel="icon" type="image/x-icon" href="/favicon.png" />
+    <link rel="icon" href="/assets/logo-labib.jpg" />
   </head>
   <body class="antialiased bg-bg-primary dark:bg-bg-primary-dark max-w-full overflow-x-hidden">
     <TopBg />
     <Header />
     <slot />
     <Footer />
+
+    <MouseTrail />
+
     <script src="../assets/js/main.js"></script>
   </body>
 </html>
