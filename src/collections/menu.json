@@ -12,6 +12,10 @@
 		"url": "/works"
 	},
 	{
+		"name": "Sertifikat",
+		"url": "/sertifikat"
+	},
+	{
 		"name": "About",
 		"url": "/about"
 	}

@@ -55,6 +55,12 @@
   "description": "Marketplace Multi-Kategrori Web (Laravel) Yang Terintegrasi Penuh Deangan Mobile app (Flutter) Untuk Pembelian Belanja Seperti Shopee ",
   "tags": ["Laravel", "Flutter", "Mysql"],
   "image": "/assets/works/toko.png"
+},
+{
+  "name": "Tes Psikologi Pendaftar",
+  "description": "Platform tes psikologi online untuk menyederhanakan proses rekrutmen perusahaan secara digital.",
+  "tags": ["Laravel", "Mysql"],
+  "image": "/assets/works/psikologi.png",
+  "isShow": true
 }
-
 ]

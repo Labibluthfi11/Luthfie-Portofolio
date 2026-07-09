@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import certificates from "@/collections/certificates.json";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import WorkCard from "@/components/cards/WorkCard.astro";
+---
+
+<Layout title="Sertifikat - Muhammad Labib Luthfi">
+  <main class="site-container mx-auto px-4 sm:px-6 py-10">
+    <PageHeader 
+      title="Sertifikat & Kompetensi" 
+      description="Kumpulan sertifikat pelatihan dan kompetensi yang telah saya raih." 
+    />
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+      {certificates.map((cert) => (
+        <a href={`/sertifikat/${cert.slug}`} class="group block">
+          <div class="relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 transition-all duration-300 hover:shadow-lg hover:border-primary/50">
+            <img src={cert.image} alt={cert.name} class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" />
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">{cert.name}</h3>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400">{cert.issuer}</p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>

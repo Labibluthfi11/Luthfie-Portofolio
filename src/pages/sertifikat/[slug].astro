@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import certificates from "@/collections/certificates.json";
+
+export function getStaticPaths() {
+  return certificates.map(cert => ({
+    params: { slug: cert.slug },
+    props: { cert },
+  }));
+}
+
+const { cert } = Astro.props;
+---
+
+<Layout title={`${cert.name} - Sertifikat`}>
+  <main class="site-container mx-auto px-4 sm:px-6 py-10">
+    <a href="/sertifikat" class="text-primary hover:underline mb-6 inline-block">&larr; Kembali ke Sertifikat</a>
+    
+    <div class="max-w-3xl mx-auto">
+      <img src={cert.image} alt={cert.name} class="w-full rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800" />
+      
+      <div class="mt-8">
+        <h1 class="text-3xl font-bold text-neutral-900 dark:text-white">{cert.name}</h1>
+        <p class="text-lg text-primary font-medium mt-1">{cert.issuer} • {cert.date}</p>
+        
+        <div class="mt-6 text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p>{cert.description}</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
